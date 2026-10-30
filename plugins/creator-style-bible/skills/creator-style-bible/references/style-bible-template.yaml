@@ -1,0 +1,51 @@
+# User Style-Bible — COPY THIS FILE AND FILL IT WITH YOUR OWN REFERENCES
+# Do not put credentials, tokens, API keys, or personal data in this file.
+# This template is intentionally empty. The skill must not use any example as a built-in style.
+
+creator_name: ""
+channels:
+  primary: ""
+  others: []
+
+visual:
+  primary_color: ""
+  accent_color: ""
+  outline: ""
+  font: ""
+  style: ""
+  banned_visuals:
+    - ""
+
+voice_and_language:
+  language: ""
+  tone: ""
+  narration_voice: ""
+  hook_pattern: ""
+  script_structure: ""
+  caption_ending: ""
+
+phrases:
+  banned:
+    - ""
+  preferred:
+    - ""
+
+previous_work:
+  topics:
+    - ""
+  titles:
+    - ""
+  animations_used:
+    - ""
+
+animation_rules:
+  consecutive_repeat: false
+  rule: "As soon as one clip finishes, move to the next animation that matches the audio and speech at that moment."
+
+publishing_rules:
+  mode: "check-first"
+  note: "Hand over for review first, publish only after the user says OK, unless there is an explicit instruction otherwise."
+
+working_rules:
+  backup_each_stage: true
+  never_overwrite_single_copy: true
