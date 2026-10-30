@@ -1,0 +1,48 @@
+creator_name: "Example Creator"
+channels:
+  primary: "YouTube"
+  others: []
+
+visual:
+  primary_color: "#F5E9D3"
+  accent_color: "#2B1D16"
+  outline: "thick dark"
+  font: ""
+  style: "cartoon-collage"
+  banned_visuals:
+    - "watermark"
+
+voice_and_language:
+  language: "English"
+  tone: "plain and specific"
+  narration_voice: ""
+  hook_pattern: "one specific sentence at the start"
+  script_structure: ""
+  caption_ending: "a comment-prompting question"
+
+phrases:
+  banned:
+    - "in today's fast-paced digital era"
+    - "not just entertainment, but a window"
+  preferred:
+    - "one specific fact"
+
+previous_work:
+  topics:
+    - "Why did the dinosaurs go extinct?"
+  titles:
+    - "Why Did the Dinosaurs Go Extinct?"
+  animations_used:
+    - "asteroid"
+
+animation_rules:
+  consecutive_repeat: false
+  rule: "As soon as one clip finishes, move to the next animation that matches the audio and speech at that moment."
+
+publishing_rules:
+  mode: "check-first"
+  note: "Hand over for review first, publish only after the user says OK, unless there is an explicit instruction otherwise."
+
+working_rules:
+  backup_each_stage: true
+  never_overwrite_single_copy: true
