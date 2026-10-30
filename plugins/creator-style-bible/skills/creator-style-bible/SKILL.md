@@ -43,7 +43,35 @@ If none exists, ask only these 7 questions:
 
 Save the answers to the template in `references/style-bible-template.yaml`. That file belongs to the user, not to this public skill. Never put credentials, tokens, API keys, addresses, or personal data in it.
 
+## Quick start: effective in 5 minutes
+
+1. Create your style-bible in under a minute, without overwriting an existing one:
+```
+python3 scripts/setup_style_bible.py --out style-bible.yaml --name "My Channel" --language English
+```
+2. Try the demo to see a failing report before you use your own files:
+```
+python3 scripts/check_style.py --bible examples/demo/demo-style-bible.yaml --script examples/demo/demo-script.txt --timeline examples/demo/demo-timeline.txt
+```
+The demo script intentionally contains a banned phrase, a repeated topic, a repeated title, and a back-to-back animation repeat, so the checker exits with FAIL and lists all four. Replace the demo files with your own style-bible and script to get a real report.
+3. Use the checker on every new script, before the human review. It is fast, offline, and deterministic: the same inputs always give the same report.
+
+## What makes a check effective
+
+- Check early, not at the end. A banned phrase found in a draft costs one sentence to fix. The same phrase found after rendering costs a whole re-render.
+- Fix the highest-cost problem first: repeated topics and back-to-back animation repeats, then banned phrases, then hook and caption polish.
+- Do not chase a perfect score. A PASS with warnings about numbers to verify is still a PASS, but those numbers must be verified before publishing.
+- Keep the style-bible short. Ten banned phrases you actually use beat fifty phrases you never check.
+
 ## Step 2: Check new work against the style-bible
+
+First run the automated checker, then do the human checks below. The checker catches banned phrases, repeated topics and titles, and back-to-back animation repeats. It does not judge visual quality, hook strength, or factual accuracy, so those still need the manual checks.
+
+```
+python3 scripts/check_style.py --bible style-bible.yaml --script script.txt --timeline timeline.txt --caption caption.txt --json
+```
+
+The `--caption` check fails only when a caption file is given and does not end with a question. The `--json` output is for tools and CI: the same result, problems, warnings, and word count in machine-readable form.
 
 Check these 6 items, one by one, and record the result:
 
@@ -107,6 +135,12 @@ For each job, produce at least:
 - It does not use copyrighted photos, images, music, or videos as final assets without permission.
 - If a visual or video generation tool fails on one beat, report that beat and offer an alternative. Do not silently replace moving animation with a slow zoom on a still photo.
 
+## Troubleshooting
+
+- Checker exits with code 2: an argument is missing or a file path is wrong. Re-check the `--bible`, `--script`, and `--timeline` paths.
+- Checker passes but the work still feels off-style: the style-bible is probably too empty. Add the banned phrases and previous topics that actually matter to that creator, then re-run.
+- A workflow file cannot be created by the GitHub App: that is a GitHub App permission limit, not a skill bug. The skill itself does not need a workflow file to install or run.
+
 ## Status
 
-Version 1.0.0, ready for public use once the user fills in their own style-bible and tests it on one real work.
+Version 1.2.0, with an automated checker, a setup wizard, a runnable demo, and tests. Ready for public use once the user fills in their own style-bible and tests it on one real work.
