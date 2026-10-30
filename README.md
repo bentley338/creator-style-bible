@@ -4,9 +4,38 @@ A skill that keeps a creator's style consistent and prevents repeated topics, ti
 
 This skill ships with no one's style built in. All style comes from the user's own references, in a single `style-bible.yaml` file they fill in.
 
+## Try it in 30 seconds
+
+No setup needed to see what a failing check looks like:
+
+```
+python3 plugins/creator-style-bible/skills/creator-style-bible/scripts/check_style.py \
+  --bible plugins/creator-style-bible/skills/creator-style-bible/examples/demo/demo-style-bible.yaml \
+  --script plugins/creator-style-bible/skills/creator-style-bible/examples/demo/demo-script.txt \
+  --timeline plugins/creator-style-bible/skills/creator-style-bible/examples/demo/demo-timeline.txt
+```
+
+The demo intentionally fails on four points at once: a banned phrase, a repeated topic, a repeated title, and a back-to-back animation repeat. A clean script passes with exit code 0.
+
+## Automated checker
+
+```
+python3 scripts/check_style.py --bible style-bible.yaml --script script.txt --timeline timeline.txt --caption caption.txt --json
+```
+
+The checker only reads the files you give it. It sends nothing anywhere, asks for no token, and needs no network. It reports word count and reading time, flags long hooks and numbers to verify as warnings, and fails only on banned phrases, repeated topics or titles, back-to-back animation repeats, and a caption without a closing question. Tests live in `scripts/tests/` and run with `python3 -m unittest discover -s scripts/tests -v`.
+
+## Setup in under a minute
+
+```
+python3 scripts/setup_style_bible.py --out style-bible.yaml --name "My Channel" --language English
+```
+
+The wizard refuses to overwrite an existing style-bible, so running it twice cannot delete your work.
+
 ## Install
 
-The commands below use the proposed repository `bentley338/creator-style-bible`. They will only work after that repository is created and published.
+The commands below use the repository `bentley338/creator-style-bible`.
 
 ### Method 1: Plugin marketplace (Claude Code, recommended)
 
@@ -73,10 +102,13 @@ plugins/creator-style-bible/
       checklist.md
       example-style-bible.md
     scripts/
+      check_style.py
       check_no_consecutive_repeat.py
+      tests/
     examples/
       check-report-example.md
       timeline-example.txt
+      demo/
 ```
 
 ## What is not in this skill
