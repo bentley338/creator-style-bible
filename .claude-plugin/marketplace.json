@@ -1,0 +1,1 @@
+{"name":"creator-style-bible-marketplace","owner":{"name":"Creator Style-Bible"},"plugins":[{"description":"Check scripts, videos, and captions against the creator's own style-bible and prevent repeated topics, titles, and animations.","name":"creator-style-bible","source":"./plugins/creator-style-bible"}]}
